@@ -19,7 +19,21 @@ No battery safety tests
 
 The hardware platform consists of an autonomous sensor node built inside a birdhouse.
 
+TODO: add system diagram
+
 ### Mainboard
+
+The mainboard contains the microcontroller (STMicroelectronics STM32U595RI) as well as several sensors and modules:
+- SD card reader
+- LoRa modem (Ebyte E22-900M22S)
+- GNSS module (Quectel L96-M33)
+- Temperature, humidity and pressure (Bosch BME280)
+
+The LoRa antenna PCB is mounted on top of the mainboard
+
+TODO: insert picture of PCB without antenna, and PCB with antenna
+
+For more information, refer to the dedicated repository: [UCA DKAIoT2](https://github.com/LEAT-EDGE/ambient-uca-dkaiot)
 
 ### Daughterboard: audio capture & energy management
 
@@ -77,6 +91,8 @@ Wires should be terminated with a 2-pin JST XH-series 2.54mm male connector (pin
 ## Software
 
 ### Embedded firmware
+
+The current firmware leverages the Zephyr real-time operating system.
 
 ### Dashboard
 
