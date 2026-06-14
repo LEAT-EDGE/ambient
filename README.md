@@ -71,16 +71,19 @@ We chose to use the PUI Audio AOM-5024L-HD-R electret condenser microphone for i
 
 [PUI Audio AOM-5024L-HD-R](https://www.digikey.com/en/products/detail/pui-audio-inc/AOM-5024L-HD-R/7898328)
 
+<img src="images/microphone.webp" alt="Microphone" width="400">
+
 Other electret condenser microphone can be used. The configured gain of the ADC's (Texas Instrument TLV320ADC3101) internal amplifier may need to be adjusted (see [Zephyr ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-zephyr/blob/main/app_all_task/src/ADC3101.c) or [Arduino ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-arduino/blob/master/ADC3101.cpp).
 
 Wires should be soldered to the microphone pads and terminated with a 2-pin JST XH-series 2.54mm male connector (pin 1: positive, pin 2: negative).
+
 
 ### Solar panel
 
 We use a 300×145mm solar panel such as this:
 <https://fr.aliexpress.com/item/1005007613448154.html>
 
-TODO: insert picture
+<img src="images/solar_panel.webp" alt="Solar panel" width="400">
 
 They are often listed as 30 W or 35 W solar panel for USB charging. The actual output power, even under perfect conditions, is much lower than advertised (below 7 W) but sufficient for our needs since the charging current of the battery is limited to ~800 mA at 4.2 V.
 
@@ -94,7 +97,7 @@ Currently, a single-cell 1800 mAh LiPo battery with built-in protection circui
 
 [RS PRO 144-9405: 3.7 V, Lithium Polymer Rechargeable Battery, 1.8 Ah](https://export.rsdelivers.com/product/rs-pro/rs-pro-37-v-lithium-polymer-rechargeable-battery/1449405)
 
-TODO: insert picture
+<img src="images/battery.webp" alt="Battery" width="400">
 
 Only single-cell Li-ion or LiPo batteries **with built-in protection circuit** and rated for min. 800 mA charge current should be used in the device.
 
@@ -109,6 +112,10 @@ Wires should be terminated with a 2-pin JST XH-series 2.54mm male connector (pin
 The [current firmware](https://github.com/LEAT-EDGE/ambient-firmware-zephyr) leverages the Zephyr real-time operating system.
 
 The [older firmware](https://github.com/LEAT-EDGE/ambient-firmware-arduino) relies on Arduino's libraries
+
+### Embedded artificial neural network
+
+The artificial neural network for bird song classification is deployed onto the microcontroller thanks to the [Qualia framework](https://github.com/LEAT-EDGE/qualia).
 
 ### 3IA dashboard
 
