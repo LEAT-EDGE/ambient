@@ -1,0 +1,163 @@
+[
+    {
+        "id": "2b78b1314a35e4b5",
+        "type": "tab",
+        "label": "Ambient-ChirpStack-InfluxDB",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bfc306945dd3fd27",
+        "type": "http in",
+        "z": "2b78b1314a35e4b5",
+        "name": "",
+        "url": "/chirpstack-ambient",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "bf5b714a3060949b",
+                "5b5d3586b9dda55e"
+            ]
+        ]
+    },
+    {
+        "id": "54cbb632259ddb57",
+        "type": "function",
+        "z": "2b78b1314a35e4b5",
+        "name": "Add deviceName tag to object",
+        "func": "msg.payload = [\n    msg.payload.object,\n    { 'deviceName': msg.payload.deviceInfo.deviceName}\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 380,
+        "wires": [
+            [
+                "bf3a702cd568bd15"
+            ]
+        ]
+    },
+    {
+        "id": "bf3a702cd568bd15",
+        "type": "influxdb out",
+        "z": "2b78b1314a35e4b5",
+        "influxdb": "0cb72114bbaee4c4",
+        "name": "Ambient sensors",
+        "measurement": "sensors",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1170,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bf5b714a3060949b",
+        "type": "change",
+        "z": "2b78b1314a35e4b5",
+        "name": "Delete labels",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload.object.labels",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "54cbb632259ddb57"
+            ]
+        ]
+    },
+    {
+        "id": "5b5d3586b9dda55e",
+        "type": "function",
+        "z": "2b78b1314a35e4b5",
+        "name": "Add deviceName tag to labels + time",
+        "func": "let labels = []\nfor (let index = 0; index < msg.payload.object.labels.length; index++) {\n    labels.push([\n        {'value': msg.payload.object.labels[index],\n            'time': new Date().getTime() - 1000 * 3 * (msg.payload.object.labels.length - index)},\n        {'deviceName': msg.payload.deviceInfo.deviceName}\n    ])\n}\n\nmsg.payload = labels\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 300,
+        "wires": [
+            [
+                "b9ca87ddcc306084"
+            ]
+        ]
+    },
+    {
+        "id": "b9ca87ddcc306084",
+        "type": "split",
+        "z": "2b78b1314a35e4b5",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 990,
+        "y": 300,
+        "wires": [
+            [
+                "71b58c149feb5ad2"
+            ]
+        ]
+    },
+    {
+        "id": "71b58c149feb5ad2",
+        "type": "influxdb out",
+        "z": "2b78b1314a35e4b5",
+        "influxdb": "0cb72114bbaee4c4",
+        "name": "Ambient labels",
+        "measurement": "labels",
+        "precision": "ms",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1160,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0cb72114bbaee4c4",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "ambient",
+        "name": "Ambient",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    }
+]
