@@ -6,19 +6,9 @@ Currently, the project focuses on birdsong recording and recognition for bird sp
 
 The hardware and firmware project sources are provided as open-source (hardware: CERN-OHL-P-2.0 license, software: Apache-2.0 license) for anyone to build, improve and extend the platform.
 
-TODO: insert picture of bird house
-
-## Disclaimer
-
-Provided as-is, no guarantee or responsibility
-No CE, FCC
-No battery safety tests
-
 ## Hardware
 
 The hardware platform consists of an autonomous sensor node built inside a birdhouse.
-
-TODO: add system diagram
 
 ### Mainboard
 
@@ -73,7 +63,7 @@ We chose to use the PUI Audio AOM-5024L-HD-R electret condenser microphone for i
 
 <img src="images/microphone.webp" alt="Microphone" width="400">
 
-Other electret condenser microphone can be used. The configured gain of the ADC's (Texas Instrument TLV320ADC3101) internal amplifier may need to be adjusted (see [Zephyr ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-zephyr/blob/main/app_all_task/src/ADC3101.c) or [Arduino ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-arduino/blob/master/ADC3101.cpp).
+Other electret condenser microphone can be used. The configured gain of the ADC's (Texas Instrument TLV320ADC3101) internal amplifier may need to be adjusted (see [Zephyr ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-zephyr/blob/main/app_all_task/src/ADC3101.c) or [Arduino ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-arduino/blob/master/ADC3101.cpp)).
 
 Wires should be soldered to the microphone pads and terminated with a 2-pin JST XH-series 2.54mm male connector (pin 1: positive, pin 2: negative).
 
@@ -134,6 +124,13 @@ The data sent through LoRaWAN can be collected inside an InfluxDB database and d
 Configuration for a Node-RED middlware fetching data from a ChirpStack v4 LoRaWAN server and inserting it into an InfluxDB as well as a Grafana dashboard are available in the [`conf/` directory](https://github.com/LEAT-EDGE/ambient/tree/main/conf).
 
 ![Grafana dashboard](images/grafana_dashboard.png)
+
+## Disclaimer
+
+This material is provided as-is for educational and research purposes only.
+The authors cannot be held responsible for any damages resulting from the use of the provided content.
+
+Importantly, the product resulting from the provided design files has not been tested or validated in any way for safety or compliance with any regulations, including but not limited to battery safety, fire risks, electromagnetic radiations…
 
 ## Acknowledgment
 
