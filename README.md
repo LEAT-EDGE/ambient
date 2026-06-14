@@ -7,7 +7,6 @@ Currently, the project focuses on birdsong recording and recognition for bird sp
 The hardware and firmware project sources are provided as open-source (hardware: CERN-OHL-P-2.0 license, software: Apache-2.0 license) for anyone to build, improve and extend the platform.
 
 TODO: insert picture of bird house
-TODO: insert screenshot of 3IA dashboard
 
 ## Disclaimer
 
@@ -24,16 +23,30 @@ TODO: add system diagram
 ### Mainboard
 
 The mainboard contains the microcontroller (STMicroelectronics STM32U595RI) as well as several sensors and modules:
-- SD card reader
+- Micro-SD card reader
 - LoRa modem (Ebyte E22-900M22S)
 - GNSS module (Quectel L96-M33)
 - Temperature, humidity and pressure (Bosch BME280)
 
-The LoRa antenna PCB is mounted on top of the mainboard
+The LoRa antenna PCB is mounted on top of the mainboard, and the daughterboard is connnected to the underside.
 
-TODO: insert picture of PCB without antenna, and PCB with antenna
+<div style="display: flex; justify-content: center; gap: 20px;">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-dkaiot/blob/master/webp/front.webp" alt="Mainboard front" width="400">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-dkaiot/blob/master/webp/back.webp" alt="Mainboard back" width="400">
+</div>
 
-For more information, refer to the dedicated repository: [UCA DKAIoT2](https://github.com/LEAT-EDGE/ambient-uca-dkaiot)
+For more information, refer to the dedicated repository: [Ambient DKAIoT](https://github.com/LEAT-EDGE/ambient-pcb-dkaiot)
+
+### Antenna
+
+LoRa antenna mounted on top of the mainboard, designed for operation in the EU868 band.
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-antenna/blob/master/webp/front.webp" alt="Antenna front" width="400">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-antenna/blob/master/webp/back.webp" alt="Antenna back" width="400">
+</div>
+
+For more information, refer to the dedicated repository: [Ambient Antenna](https://github.com/LEAT-EDGE/ambient-pcb-antenna)
 
 ### Daughterboard: audio capture & energy management
 
@@ -45,7 +58,10 @@ The daughterboard is an custom extension PCB that plugs into the mainboard and c
   - analog-to-digital converter with microphone input amplification and digital filtering (Texas Instrument TLV320ADC3101),
   - analog audio wake-up circuit with high-pass filter and threshold detector.
 
-TODO: insert picture
+<div style="display: flex; justify-content: center; gap: 20px;">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-audiopower/blob/main/png/AudioPowerBoard_front.png" alt="Daughterboard front" width="400">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-audiopower/blob/main/png/AudioPowerBoard_back.png" alt="Daughterboard back" width="400">
+</div>
 
 For more information, refer to the dedicated repository: [Ambient AudioPowerBoard](https://github.com/LEAT-EDGE/ambient-pcb-audiopower)
 
@@ -55,11 +71,9 @@ We chose to use the PUI Audio AOM-5024L-HD-R electret condenser microphone for i
 
 [PUI Audio AOM-5024L-HD-R](https://www.digikey.com/en/products/detail/pui-audio-inc/AOM-5024L-HD-R/7898328)
 
-Other electret condenser microphone can be used. The configured gain of the ADC's (Texas Instrument TLV320ADC3101) internal amplifier may need to be adjusted.
+Other electret condenser microphone can be used. The configured gain of the ADC's (Texas Instrument TLV320ADC3101) internal amplifier may need to be adjusted (see [Zephyr ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-zephyr/blob/main/app_all_task/src/ADC3101.c) or [Arduino ADC3101 settings](https://github.com/LEAT-EDGE/ambient-firmware-arduino/blob/master/ADC3101.cpp).
 
 Wires should be soldered to the microphone pads and terminated with a 2-pin JST XH-series 2.54mm male connector (pin 1: positive, pin 2: negative).
-
-TODO: link to TLV320ADC3101 configuration file
 
 ### Solar panel
 
@@ -92,11 +106,28 @@ Wires should be terminated with a 2-pin JST XH-series 2.54mm male connector (pin
 
 ### Embedded firmware
 
-The current firmware leverages the Zephyr real-time operating system.
+The [current firmware](https://github.com/LEAT-EDGE/ambient-firmware-zephyr) leverages the Zephyr real-time operating system.
 
-### Dashboard
+The [older firmware](https://github.com/LEAT-EDGE/ambient-firmware-arduino) relies on Arduino's libraries
 
+### 3IA dashboard
+
+A [web dashboard](https://3ia-demos.inria.fr/ezbird/dashboard) is currently in development by [3IA Côte d'Azur](https://3ia.univ-cotedazur.eu/).
+
+The dashboard can display statistics collected from the data sent through LoRaWAN and from the audio samples of the SD cards analyzed offline. Audio samples are also available for listening.
+
+Source code is not published yet.
+
+![3IA dashboard](images/3ia_dashboard.png)
+
+### Grafana dashboard
+
+The data sent through LoRaWAN can be collected inside an InfluxDB database and displayed on a Grafana dashboard.
+
+Configuration for a Node-RED middlware fetching data from a ChirpStack v4 LoRaWAN server and inserting it into an InfluxDB as well as a Grafana dashboard are available in the [`conf/` directory](https://github.com/LEAT-EDGE/ambient/tree/main/conf).
+
+![Grafana dashboard](images/grafana_dashboard.png)
 
 ## Acknowledgment
 
-This project is funded by Université Côte d'Azur and CERN.
+This project has received funding from [Université Côte d'Azur](https://leat.univ-cotedazur.fr/) and [CERN](https://home.cern/).
