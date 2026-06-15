@@ -6,6 +6,8 @@ Currently, the project focuses on birdsong recording and recognition for bird sp
 
 The hardware and firmware project sources are provided as open-source (hardware: CERN-OHL-P-2.0 license, software: Apache-2.0 license) for anyone to build, improve and extend the platform.
 
+<img src="images/birdhouse.jpg" alt="Birdhouse" width="400">
+
 ## Hardware
 
 The hardware platform consists of an autonomous sensor node built inside a birdhouse.
