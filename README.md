@@ -51,8 +51,8 @@ The daughterboard is an custom extension PCB that plugs into the mainboard and c
   - analog audio wake-up circuit with high-pass filter and threshold detector.
 
 <div style="display: flex; justify-content: center; gap: 20px;">
-    <img src="https://github.com/LEAT-EDGE/ambient-pcb-audiopower/blob/main/png/AudioPowerBoard_front.png" alt="Daughterboard front" width="400">
-    <img src="https://github.com/LEAT-EDGE/ambient-pcb-audiopower/blob/main/png/AudioPowerBoard_back.png" alt="Daughterboard back" width="400">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-audiopower/blob/main/webp/front.webp" alt="Daughterboard front" width="400">
+    <img src="https://github.com/LEAT-EDGE/ambient-pcb-audiopower/blob/main/webp/back.webp" alt="Daughterboard back" width="400">
 </div>
 
 For more information, refer to the dedicated repository: [Ambient AudioPowerBoard](https://github.com/LEAT-EDGE/ambient-pcb-audiopower)
