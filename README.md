@@ -14,7 +14,7 @@ The hardware platform consists of an autonomous sensor node built inside a birdh
 
 ### Mainboard
 
-The mainboard contains the microcontroller (STMicroelectronics STM32U595RI) as well as several sensors and modules:
+The mainboard contains the microcontroller (STMicroelectronics STM32U595RI or STM32L496RG) as well as several sensors and modules:
 - Micro-SD card reader
 - LoRa modem (Ebyte E22-900M22S)
 - GNSS module (Quectel L96-M33)
